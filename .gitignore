@@ -1,0 +1,10 @@
+
+**/node_modules
+
+*.log
+
+dist/
+build/
+
+.idea/
+.vscode/
