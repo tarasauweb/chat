@@ -2,20 +2,22 @@
     position: relative;
     width: 100%;
     height: 100vh;
-    &__btns{
+
+    &__btns {
         width: 100%;
         height: 100px;
         display: flex;
         justify-content: flex-end;
         padding: 10px 10px;
     }
-    &__btn{
+
+    &__btn {
         width: 120px;
         height: 45px;
         padding: 0.3rem 2rem;
         border-radius: 8px;
-        border: 1px solid rgba(255,255,255,0.2);
-        background: rgba(255,255,255,0.05);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        background: rgba(255, 255, 255, 0.05);
         color: #fff;
         font-weight: 600;
         text-transform: uppercase;
@@ -23,32 +25,46 @@
         cursor: pointer;
         transition: all 0.3s;
         background-color: #141414;
-        &:first-child{
+
+        &:first-child {
             margin-right: 10px;
         }
-        &:hover{
-            background: rgba(255,255,255,0.1);
+
+        &:hover {
+            background: rgba(255, 255, 255, 0.1);
         }
     }
+
     &__logo {
         position: absolute;
         top: 50%;
         left: 50%;
-        transform: translate(-50%,-50%);
+        transform: translate(-50%, -50%);
         display: flex;
         flex-direction: column;
         align-items: center;
     }
-    &__title{
+
+    &__title {
+        margin-top: 20px;
         font-size: 3em;
     }
-    &__slogan{
+
+    &__slogan {
         margin-top: 10px;
     }
-    &__img{
+
+    &__img {
         width: 200px;
         height: auto;
         object-fit: cover;
+        box-shadow:
+            0 0 20px rgba(0, 229, 255, 0.6),
+            /* cyan glow */
+            0 0 40px rgba(156, 39, 176, 0.4);
+        /* violet glow */
+        border-radius: 12px;
+        /* если логотип в квадрате */
     }
 
     &__circle {
@@ -60,8 +76,7 @@
         border-radius: 50%;
         background: radial-gradient(circle at center,
                 #0d1620 0%,
-                #141414 100%
-            );
+                #141414 100%);
         filter: blur(30px);
         z-index: 0;
     }
