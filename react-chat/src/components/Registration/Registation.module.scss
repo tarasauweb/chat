@@ -2,15 +2,56 @@
     position: relative;
     width: 100%;
     height: 100vh;
-
+    &__backBtn{
+        width: 50px;
+        height: 45px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 8px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        background: rgba(255, 255, 255, 0.05);
+        color: #fff;
+        font-weight: 600;
+        text-transform: uppercase;
+        backdrop-filter: blur(10px);
+        cursor: pointer;
+        transition: all 0.3s;
+        background-color: #141414;
+        opacity: 0;
+        pointer-events: none;
+        &.active{
+            opacity: 1;
+            transition: all 0.5s;
+            pointer-events:auto;
+        }
+        &:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+    }
+    &__arrowBack{
+        width: 13px;
+        height: auto;
+    }
     &__btns {
         width: 100%;
-        height: 100px;
+        height: 70px;
+        padding: 10px 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        
+    }
+    &__openFormBtn{
         display: flex;
         justify-content: flex-end;
-        padding: 10px 10px;
+        transition: all 0.5s;
+        &.active{
+            opacity: 0;
+            transition: all 0.5s;
+            pointer-events: none;
+        }
     }
-
     &__btn {
         width: 120px;
         height: 45px;
@@ -25,7 +66,6 @@
         cursor: pointer;
         transition: all 0.3s;
         background-color: #141414;
-
         &:first-child {
             margin-right: 10px;
         }
@@ -43,6 +83,12 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        transition: all 0.5s;
+        &.active{
+            transform: translate(-50%, -110%) scale(0.5);
+            transition: all 0.5s;
+            opacity: 0;
+        }
     }
 
     &__title {
@@ -78,6 +124,6 @@
                 #0d1620 0%,
                 #141414 100%);
         filter: blur(30px);
-        z-index: 0;
+        z-index: -1;
     }
 }
