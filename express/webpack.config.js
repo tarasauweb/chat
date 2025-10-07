@@ -15,7 +15,7 @@ module.exports = {
   plugins: [new ESLintPlugin()],
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'app.js',
+    filename: 'index.js',
   },
   resolve: {
     extensions: ['.ts', '.js'],
