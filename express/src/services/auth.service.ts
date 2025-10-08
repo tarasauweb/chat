@@ -2,7 +2,7 @@ import { ObjectId } from 'mongodb';
 import { UserForDBType } from '../types/auth.type';
 import { CreateUserModel } from '../models/CreateUserModel';
 import bcryptjs from 'bcryptjs';
-import { auth_repository } from 'src/repositories/auth.repository';
+import { auth_repository } from '../repositories/auth.repository';
 
 export const auth_service = {
   defaultSalt: 10,
