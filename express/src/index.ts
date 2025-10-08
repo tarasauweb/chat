@@ -1,6 +1,6 @@
 import { SETTINGS } from './settings';
 import { app } from './app';
-import { client } from './mongoDB';
+import { client } from './db/mongoDB';
 
 async function startServer(port: string | number) {
   try {
