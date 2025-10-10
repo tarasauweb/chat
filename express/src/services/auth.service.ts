@@ -13,15 +13,24 @@ export const auth_service = {
       _id: new ObjectId(),
       name,
       email,
-      hash,
+      settings: {
+        theme: 'light',
+        notifications: true,
+        sound: true,
+        showLastSeen: true,
+      },
+      isConfirmed: false,
+      passwordHash: hash,
       createdAt: new Date(),
       updatedAt: new Date(),
     };
     const result = await auth_repository.create_user(newUser);
     return {
       ...result,
-      createdAt: result.createdAt.toISOString(),
-      updatedAt: result.updatedAt.toISOString(),
+      id: newUser._id.toString(),
+      email: newUser.email,
+      createdAt: newUser.createdAt.toISOString(),
+      message: 'User is created. Check your email.',
     };
   },
 

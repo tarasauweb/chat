@@ -6,10 +6,11 @@ export type UserForDBType = {
   _id: ObjectId;
   name: string;
   email: string;
-  hash: string;
+  passwordHash: string;
   avatarUrl?: string;
   createdAt: Date;
   updatedAt: Date;
+  isConfirmed: boolean;
   settings?: {
     theme: 'light' | 'dark';
     notifications: boolean;

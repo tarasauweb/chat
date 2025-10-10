@@ -1,4 +1,4 @@
-import { Router } from 'express';
+import { Router, Response } from 'express';
 import { RequestWithBodySignUp } from '../../types/auth.type';
 import { CreateUserModel } from '../../models/CreateUserModel';
 import { ValidationError, Result, validationResult } from 'express-validator';
@@ -10,7 +10,7 @@ export function AuthRouter() {
   router.post(
     '/signup',
     signUpValidator,
-    async (req: RequestWithBodySignUp<CreateUserModel>, res) => {
+    async (req: RequestWithBodySignUp<CreateUserModel>, res: Response) => {
       const errors: Result<ValidationError> = validationResult(req);
       if (!errors.isEmpty()) {
         return res.status(422).json({ errors: errors.mapped() });
@@ -23,7 +23,7 @@ export function AuthRouter() {
         };
         const result = await auth_service.create_user(user);
         return res.status(201).send(result);
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } catch (err: any) {
         return res.status(400).json({ success: false, message: err.message });
       }
