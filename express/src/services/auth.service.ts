@@ -3,7 +3,8 @@ import { UserForDBType } from '../types/auth.type';
 import { CreateUserModel } from '../models/CreateUserModel';
 import bcryptjs from 'bcryptjs';
 import { auth_repository } from '../repositories/auth.repository';
-
+import { nodemailer_service } from '../application/nodemailer_service';
+import { jwt_service } from '../application/jwt_service';
 export const auth_service = {
   defaultSalt: 10,
   async create_user(user: CreateUserModel) {
@@ -25,11 +26,10 @@ export const auth_service = {
       updatedAt: new Date(),
     };
     const result = await auth_repository.create_user(newUser);
+    const token = jwt_service.emailConfirmation(result.email);
+    await nodemailer_service.sendConfirmationEmail(result.email, token);
     return {
       ...result,
-      id: newUser._id.toString(),
-      email: newUser.email,
-      createdAt: newUser.createdAt.toISOString(),
       message: 'User is created. Check your email.',
     };
   },

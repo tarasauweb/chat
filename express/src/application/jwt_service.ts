@@ -8,7 +8,7 @@ type EmailPayload = { email: string };
 export const jwt_service = {
   emailConfirmation(email: string) {
     const token = jwt.sign({ email }, SETTINGS.jwt_secret, { expiresIn: '1h' });
-    return { token };
+    return token ;
   },
   create_jwt(id: ObjectId) {
     const token = jwt.sign({ id: id.toString() }, SETTINGS.jwt_secret, { expiresIn: '1h' });

@@ -3,6 +3,13 @@ import { collection } from '../db/mongoDB';
 export const auth_repository = {
   async create_user(user: UserForDBType) {
     const result = await collection.insertOne(user);
-    return { result: result.acknowledged };
+    const safeResult = {
+      id: result.insertedId,
+      email: user.email,
+      confirm: user.isConfirmed,
+      update: user.updatedAt,
+      status: result.acknowledged
+    }
+    return safeResult;
   },
 };
