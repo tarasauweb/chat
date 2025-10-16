@@ -8,8 +8,8 @@ export const auth_repository = {
       email: user.email,
       confirm: user.isConfirmed,
       update: user.updatedAt,
-      status: result.acknowledged
-    }
+      status: result.acknowledged,
+    };
     return safeResult;
   },
 };

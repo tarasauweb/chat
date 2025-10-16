@@ -1,7 +1,7 @@
 import { body } from 'express-validator';
 
 export const signUpValidator = [
-  body('user.username')
+  body('name')
     .trim()
     .notEmpty()
     .withMessage('Username is required')
@@ -10,7 +10,7 @@ export const signUpValidator = [
     .matches(/^[A-Za-zА-Яа-яЁё\s]+$/)
     .withMessage('Username can only contain letters and spaces'),
 
-  body('user.email')
+  body('email')
     .trim()
     .notEmpty()
     .withMessage('Email is required')
@@ -18,6 +18,6 @@ export const signUpValidator = [
     .withMessage('Please enter a valid email address')
     .normalizeEmail(),
 
-  body('user.password', 'password does not Empty').not().isEmpty(),
-  body('user.password', 'The minimum password length is 6 characters').isLength({ min: 6 }),
+  body('password', 'password does not Empty').not().isEmpty(),
+  body('password', 'The minimum password length is 6 characters').isLength({ min: 6 }),
 ];
