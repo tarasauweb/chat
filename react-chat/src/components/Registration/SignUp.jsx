@@ -15,6 +15,35 @@ export function SignUp () {
 
         setErrors(prev => ({ ...prev, [name]: error }));
     }
+
+    async function submit (e) {
+        e.preventDefault();
+        const isErrors = {
+            name: validateName(form.name),
+            email: validateEmail(form.email),
+            password: validatePassword(form.password),
+        }
+        setErrors(isErrors);
+        const hasErrors = Object.values(isErrors).some(Boolean);
+        if (hasErrors) return;
+        const user = {
+                name: form.name,
+                email: form.email,
+                password: form.password
+            }
+        try{
+             const res = await fetch('http://localhost:3000/auth/signup', 
+                {   method:"POST", 
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify(user)
+                });
+            const data = await res.json();
+            console.log(data)
+        }catch(error){
+            console.log(error);
+        }
+        
+    }
     return(
         <form className={`${styles.form}`}>
             <label htmlFor="name" className={styles.form__label}>
@@ -38,7 +67,7 @@ export function SignUp () {
                 <input onChange={handleChange} name='password' value={form.password} required type="text" id="password" className={`${styles.form__name} ${errors.password ? styles.error : ''}`} />
                 {errors.password && <span className={styles.form__error}>{errors.password}</span>}
             </label>
-            <button className={styles.form__btn}>
+            <button onClick={submit} className={styles.form__btn}>
                 Sign Up
             </button>
         </form>

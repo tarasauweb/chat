@@ -13,6 +13,35 @@ export function SignIn () {
 
         setErrors(prev => ({ ...prev, [name]: error }));
     }
+
+    async function submit (e) {
+        e.preventDefault();
+
+        const isErrors = {
+            email: validateEmail(form.email),
+            password: validatePassword(form.password),
+        }
+
+        setErrors(isErrors);
+        const hasErrors = Object.values(isErrors).some(Boolean);
+        if(hasErrors) return;
+        const user = {
+            email: form.email,
+            password: form.password,
+        }
+        try{
+            const res = await fetch('http://localhost:3000/auth/signin', 
+                {   method:"POST", 
+                    headers: {'Content-type': 'application/json'},
+                    body:JSON.stringify(user), 
+                
+                });
+            const data = await res.json();
+            console.log(data)
+        }catch(err){
+            console.log(err)
+        }
+    }
     return (
         <form className={`${styles.form}`}>
             <label htmlFor="email-login" className={styles.form__label}>
@@ -29,7 +58,7 @@ export function SignIn () {
                 <input name='password' onChange={handleChange} value={form.password} required type="text" id="password-login" className={`${styles.form__name} ${errors.password ? styles.error : ''}`} />
                 {errors.password && <span className={styles.form__error}>{errors.password}</span>}
             </label>
-            <button className={styles.form__btn}>
+            <button onClick={submit} className={styles.form__btn}>
                 Sign In
             </button>
         </form>
