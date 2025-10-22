@@ -28,7 +28,7 @@ export function Registation () {
                     </p>
                 </div>
                 {
-                    isOpenSignUp ? <SignUp></SignUp> : <SignUp></SignUp>
+                    isOpenSignUp ? <SignUp></SignUp> : <SignIn></SignIn>
                 }
                 
             </div>
