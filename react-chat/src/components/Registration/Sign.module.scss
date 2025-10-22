@@ -1,23 +1,12 @@
+@use '../../mixins';
 .form {
-    display: flex;
-    flex-direction: column;
+    @include mixins.flex($f-direction:column, $a-items:stretch);
     gap: 1.5rem;
-    width: 320px;
-    margin: 0 auto;
+    width: 50%;
+    max-width: 360px;
     padding: 2rem;
-    background: #0d0d0f; // тёмный фон
+    background: #0d0d0f;
     border-radius: 12px;
-    box-shadow: 0 0 20px rgba(0, 150, 255, 0.2);
-    position: absolute;
-    top:50%;
-    left:50%;
-    transform: translate(-50%,150%);
-    transition: all 0.5s;
-    &.active{
-        transform: translate(-50%,-50%);
-        transition: all 0.5s;
-    }
-
     &__label {
         display: flex;
         flex-direction: column;
@@ -25,12 +14,11 @@
         color: #e0e0e0;
         font-weight: 500;
         letter-spacing: 0.5px;
-
+        position: relative;
         & span {
             margin-bottom: 0.4rem;
         }
     }
-
     &__name {
         padding: 0.75rem 1rem;
         border: 1px solid rgba(0, 150, 255, 0.4);
@@ -39,14 +27,25 @@
         color: #fff;
         font-size: 0.95rem;
         transition: all 0.3s ease;
-
         &:focus {
             outline: none;
-            border-color: #0096ff;
+            border-color: #29363f;
             box-shadow: 0 0 8px rgba(0, 150, 255, 0.6);
         }
+        &.error{
+            border-color: #4a0523;
+            box-shadow: 0 0 8px rgba(211, 77, 130, 0.6);
+        }
+        
     }
-
+    &__error{
+        font-size: 0.8em;
+        margin-top: 5px;
+        margin-left: 5px;
+        color: #a01752;
+        position: absolute;
+        top:70px;
+    }
     &__btn {
         margin-top: 1rem;
         padding: 0.8rem;
@@ -58,12 +57,9 @@
         font-weight: 600;
         cursor: pointer;
         transition: transform 0.2s ease, box-shadow 0.3s ease;
-
         &:hover {
-            transform: translateY(-2px);
             box-shadow: 0 0 12px rgba(0, 150, 255, 0.6);
         }
-
         &:active {
             transform: translateY(0);
             box-shadow: none;

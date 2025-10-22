@@ -1,12 +1,8 @@
-import { useState, useEffect } from 'react'
-import styles from './LogIn.module.scss'
-export function Auth ({isOpenForm}) {
-    const [isOpen, setIsOpen] = useState(isOpenForm);
-    useEffect(() => {
-            setIsOpen(isOpenForm);
-        }, [isOpenForm]);
+
+import styles from './Sign.module.scss'
+export function SignIn () {
     return (
-        <form className={`${styles.form} ${isOpen ? styles.active : ''}`}>
+        <form className={`${styles.form}`}>
             <label htmlFor="email-login" className={styles.form__label}>
                 <span>
                     Email:
